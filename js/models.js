@@ -76,12 +76,44 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory(user, newStory) {
-    const storyData = await axios.post("https://hack-or-snooze-v3.herokuapp.com/stories",
-    {params: {"token": ${user.token}, "story": {"author": ${newStory.author},
-    "title": ${newStory.title}, "url": ${newStory.url}}}})
+  async addStory(user, newStoryInput) {
+    const response = await axios.post(`${BASE_URL}/stories`,
+      {
+        token: user.loginToken
+        , story: {
+          author: newStoryInput.author,
+          title: newStoryInput.title, url: newStoryInput.url
+        }
+      }
+
+    );
+
+    console.debug("make a post request, and get", response);
+    //reponse.data.story = >
+    const storyData = response.data.story;
+    console.log("storyData", storyData);
+    const {
+      storyId,
+      title,
+      author,
+      url,
+      username,
+      createdAt } = response.data.story;
+
+
+
+    const newStory = new Story(
+      { storyId, title, author, url, username, createdAt }
+    );
+    console.debug("newStory created", newStory);
+    return newStory;
+
   }
-  console.debug(storyData);
+
+
+
+
+
 }
 
 
@@ -96,13 +128,13 @@ class User {
    */
 
   constructor({
-                username,
-                name,
-                createdAt,
-                favorites = [],
-                ownStories = []
-              },
-              token) {
+    username,
+    name,
+    createdAt,
+    favorites = [],
+    ownStories = []
+  },
+    token) {
     this.username = username;
     this.name = name;
     this.createdAt = createdAt;
