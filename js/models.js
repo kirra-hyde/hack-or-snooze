@@ -66,8 +66,7 @@ class StoryList {
     return new StoryList(stories);
   }
 
-  //1. post request using info from newStory to add story to API.
-  //2. Using Story class to make story instance
+
   /** Adds story data to API, makes a Story instance, adds it to story list.
    * - user - the current instance of User who will post the story
    * - obj of {title, author, url}
