@@ -234,18 +234,19 @@ class User {
   }
 
   async addFavorite(story) {
-    let reponse = await axios(
+    const username = currentUser.username;
+    const token = currentUser.loginToken;
+    const storyID = story.storyID;
+
+    let response = await axios(
       {
-      url: `${BASE_URL}/users/${username}/favorites/${sotryId}`,
+      url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
       method: "POST",
       data:{
-        username:fdsfsd,
-        storyId:
+        token: token
       }
     }
     );
-
-
   }
 
   async removeFavorite() {
