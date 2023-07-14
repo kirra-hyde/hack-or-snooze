@@ -25,7 +25,8 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    const linkToBeDisplayed = new URL(this.url);
+    return linkToBeDisplayed.hostname;
   }
 }
 
@@ -73,14 +74,15 @@ class StoryList {
    *
    * Returns the new Story instance
    */
-
+  // async addStory(user, {author, title, url})
   async addStory(user, newStoryInput) {
     const response = await axios.post(`${BASE_URL}/stories`,
       {
-        token: user.loginToken
-        , story: {
+        token: user.loginToken,
+        story: {
           author: newStoryInput.author,
-          title: newStoryInput.title, url: newStoryInput.url
+          title: newStoryInput.title,
+          url: newStoryInput.url
         }
       }
 
@@ -230,4 +232,28 @@ class User {
       return null;
     }
   }
+
+  async addFavorite(story) {
+    let reponse = await axios(
+      {
+      url: `${BASE_URL}/users/${username}/favorites/${sotryId}`,
+      method: "POST",
+      data:{
+        username:fdsfsd,
+        storyId:
+      }
+    }
+    );
+
+
+  }
+
+  async removeFavorite() {
+
+
+  }
+
+
+
+
 }
