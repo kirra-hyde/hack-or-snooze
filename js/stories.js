@@ -35,11 +35,19 @@ function generateStoryMarkup(story) {
       </li>
     `);
 
+
   let $star = $(".star");
-  $star.on(".star", function () {
-    $star.toggleClass("favorite");
-    console.log("star", $star);
-  });
+  $star.on("click", addOrRemoveFavorite);
+
+  function addOrRemoveFavorite(evt) {
+    console.log("Event target is", evt.target);
+    const $eventTarget = $(evt.target).css("background-color");
+    console.log("Event target is", $eventTarget);
+    if ($eventTarget === "rgb(127, 255, 212)") {
+      //addFavorite()
+
+    }
+  }
 
   return $li;
 
