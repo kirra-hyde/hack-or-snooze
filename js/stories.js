@@ -23,8 +23,9 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
-  return $(`
+  let $li = $(`
       <li id="${story.storyId}">
+        <span class = "star">star</span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -33,6 +34,16 @@ function generateStoryMarkup(story) {
         <small class="story-user">posted by ${story.username}</small>
       </li>
     `);
+
+  let $star = $(".star");
+  $star.on(".star", function () {
+    $star.toggleClass("favorite");
+    console.log("star", $star);
+  });
+
+  return $li;
+
+
 }
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
@@ -56,7 +67,7 @@ function putStoriesOnPage() {
 async function getStoryDataFromForm(evt) {
   //obj of {title, author, url}
   evt.preventDefault();
-  console.log("get story data from from")
+  console.log("get story data from from");
   const author = $("#author").val();
   const title = $("#title").val();
   const url = $("#url").val();
@@ -66,6 +77,14 @@ async function getStoryDataFromForm(evt) {
   putStoriesOnPage();
 }
 
-$submitForm.on("submit", getStoryDataFromForm)
+let $star = $(".star");
+$star.on("click", function () {
+  $star.toggleClass("favorite");
+  console.log("star", $star);
+})
+
+
+
+
 
 

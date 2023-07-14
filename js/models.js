@@ -236,25 +236,42 @@ class User {
   async addFavorite(story) {
     const username = currentUser.username;
     const token = currentUser.loginToken;
-    const storyID = story.storyID;
+    const storyId = story.storyId;
+    console.log("story", story);
+    console.log("storyid is", storyId);
 
     let response = await axios(
       {
-      url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
-      method: "POST",
-      data:{
-        token: token
+        url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
+        method: "POST",
+        data: {
+          token: token
+        }
       }
-    }
     );
+
+    console.log("response.data is", response.data);
   }
 
-  async removeFavorite() {
+  async removeFavorite(story) {
+    const username = currentUser.username;
+    const token = currentUser.loginToken;
+    const storyId = story.storyId;
+    console.log("story", story);
+    console.log("storyid is", storyId);
 
+    let response = await axios(
+      {
+        url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
+        method: "DELETE",
+        data: {
+          token: token
+        }
+      }
+    );
 
+    console.log("response.data is", response.data);
   }
-
-
 
 
 }
