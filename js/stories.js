@@ -50,3 +50,22 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+
+/**Get the data from user input, and put the new story on the page */
+async function getStoryDataFromForm(evt) {
+  //obj of {title, author, url}
+  evt.preventDefault();
+  console.log("get story data from from")
+  const author = $("#author").val();
+  const title = $("#title").val();
+  const url = $("#url").val();
+  const newStoryInput = { author, title, url };
+  console.debug("newStoryInput", newStoryInput);
+  await storyList.addStory(currentUser, newStoryInput);
+  putStoriesOnPage();
+}
+
+$submitForm.on("submit", getStoryDataFromForm)
+
+
