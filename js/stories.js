@@ -41,10 +41,19 @@ function generateStoryMarkup(story) {
 
   function addOrRemoveFavorite(evt) {
     console.log("Event target is", evt.target);
-    const $eventTarget = $(evt.target).css("background-color");
-    console.log("Event target is", $eventTarget);
-    if ($eventTarget === "rgb(127, 255, 212)") {
+    const $eventTargetColor = $(evt.target).css("background-color");
+    console.log("Event target is", $eventTargetColor);
+    if ($eventTargetColor === "rgb(127, 255, 212)") {
       //addFavorite()
+      let $selectedLi = $(evt.target).parent();
+      console.log("parent of star", $selectedLi);
+      let selectedStoryId = $selectedLi.attr("id");
+      console.log("selectedStoryId", selectedStoryId);
+      currentUser.addFavorite();
+      storyList.stories[idx];
+      for (let story of storyList.stories) {
+
+      }
 
     }
   }
